@@ -1,3 +1,6 @@
+#!/bin/bash
+
+set -e
 
 function set_output() {
     echo "set-output name=$1::$2"
