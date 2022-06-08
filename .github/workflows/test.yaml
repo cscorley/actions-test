@@ -8,10 +8,10 @@ jobs:
     name: Script
     runs-on: ubuntu-latest
     outputs:
-      bool_true: ${{ steps.format_version.outputs.bool_true }}
-      bool_false: ${{ steps.format_version.outputs.bool_false }}
-      json_true: ${{ steps.format_version.outputs.json_true }}
-      json_false: ${{ steps.format_version.outputs.json_false }}
+      bool_true: ${{ steps.script.outputs.bool_true }}
+      bool_false: ${{ steps.script.outputs.bool_false }}
+      json_true: ${{ toJSON(steps.script.outputs.bool_true) }}
+      json_false: ${{ toJSON(steps.script.outputs.bool_false) }}
     steps:
       - uses: actions/checkout@v2
       - name: Run script
