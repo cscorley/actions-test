@@ -1,0 +1,69 @@
+name: test
+on:
+  push:
+    branches:
+      - main
+jobs:
+  setup:
+    name: Script
+    runs-on: ubuntu-latest
+    outputs:
+      bool_true: ${{ steps.format_version.outputs.bool_true }}
+      bool_false: ${{ steps.format_version.outputs.bool_false }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run script
+        id: script
+        run: test.sh
+  secondary:
+    name: Secondary
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - name: not bool_true
+        if: ${{ ! needs.setup.outputs.bool_true }}
+        run: "echo not bool_true"
+
+      - name: bool_true
+        if: ${{ needs.setup.outputs.bool_true }}
+        run: "echo bool_true"
+
+      - name: bool_true string false
+        if: ${{ needs.setup.outputs.bool_true == "false" }}
+        run: "echo string false"
+
+      - name: bool_true string not false
+        if: ${{ needs.setup.outputs.bool_true != "false" }}
+        run: "echo string not false"
+
+      - name: bool_true string true
+        if: ${{ needs.setup.outputs.bool_true == "true" }}
+        run: "echo string false"
+
+      - name: bool_true string not true
+        if: ${{ needs.setup.outputs.bool_true != "true" }}
+        run: "echo string not false"
+
+      - name: not bool_false
+        if: ${{ ! needs.setup.outputs.bool_false }}
+        run: "echo not bool_false"
+
+      - name: bool_false
+        if: ${{ needs.setup.outputs.bool_false }}
+        run: "echo bool_false"
+
+      - name: bool_false string false
+        if: ${{ needs.setup.outputs.bool_false == "false" }}
+        run: "echo string false"
+
+      - name: bool_false string not false
+        if: ${{ needs.setup.outputs.bool_false != "false" }}
+        run: "echo string not false"
+
+      - name: bool_false string true
+        if: ${{ needs.setup.outputs.bool_false == "true" }}
+        run: "echo string false"
+
+      - name: bool_false string not true
+        if: ${{ needs.setup.outputs.bool_false != "true" }}
+        run: "echo string not false"
