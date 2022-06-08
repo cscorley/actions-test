@@ -67,3 +67,19 @@ jobs:
       - name: bool_false string not true
         if: ${{ needs.setup.outputs.bool_false != 'true' }}
         run: "echo string not false"
+
+      - name: json not bool_true
+        if: ${{ ! fromJSON(needs.setup.outputs.bool_true) }}
+        run: "echo not bool_true"
+
+      - name: json bool_true
+        if: ${{ fromJSON(needs.setup.outputs.bool_true) }}
+        run: "echo bool_true"
+
+      - name: json not bool_false
+        if: ${{ ! fromJSON(needs.setup.outputs.bool_false) }}
+        run: "echo not bool_false"
+
+      - name: json bool_false
+        if: ${{ fromJSON(needs.setup.outputs.bool_false) }}
+        run: "echo bool_false"
