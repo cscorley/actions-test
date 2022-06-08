@@ -29,19 +29,19 @@ jobs:
         run: "echo bool_true"
 
       - name: bool_true string false
-        if: ${{ needs.setup.outputs.bool_true == "false" }}
+        if: ${{ needs.setup.outputs.bool_true == 'false' }}
         run: "echo string false"
 
       - name: bool_true string not false
-        if: ${{ needs.setup.outputs.bool_true != "false" }}
+        if: ${{ needs.setup.outputs.bool_true != 'false' }}
         run: "echo string not false"
 
       - name: bool_true string true
-        if: ${{ needs.setup.outputs.bool_true == "true" }}
+        if: ${{ needs.setup.outputs.bool_true == 'true' }}
         run: "echo string false"
 
       - name: bool_true string not true
-        if: ${{ needs.setup.outputs.bool_true != "true" }}
+        if: ${{ needs.setup.outputs.bool_true != 'true' }}
         run: "echo string not false"
 
       - name: not bool_false
@@ -53,17 +53,17 @@ jobs:
         run: "echo bool_false"
 
       - name: bool_false string false
-        if: ${{ needs.setup.outputs.bool_false == "false" }}
+        if: ${{ needs.setup.outputs.bool_false == 'false' }}
         run: "echo string false"
 
       - name: bool_false string not false
-        if: ${{ needs.setup.outputs.bool_false != "false" }}
+        if: ${{ needs.setup.outputs.bool_false != 'false' }}
         run: "echo string not false"
 
       - name: bool_false string true
-        if: ${{ needs.setup.outputs.bool_false == "true" }}
+        if: ${{ needs.setup.outputs.bool_false == 'true' }}
         run: "echo string false"
 
       - name: bool_false string not true
-        if: ${{ needs.setup.outputs.bool_false != "true" }}
+        if: ${{ needs.setup.outputs.bool_false != 'true' }}
         run: "echo string not false"
